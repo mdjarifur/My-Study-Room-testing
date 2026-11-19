@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <title>সংযোগ বিচ্ছিন্ন — আমার অধ্যয়ন কক্ষ</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: radial-gradient(circle at 20% 15%, rgba(56, 189, 248, 0.14), transparent 50%),
+                  radial-gradient(circle at 80% 85%, rgba(16, 185, 129, 0.14), transparent 55%),
+                  #0f172a;
+      color: #f8fafc;
+      font-family: "Hind Siliguri", "Noto Sans Bengali", system-ui, -apple-system, sans-serif;
+      overscroll-behavior-y: none;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+    .offline-card {
+      width: 100%;
+      max-width: 410px;
+      background: rgba(30, 41, 59, 0.85);
+      border: 1.5px solid rgba(56, 189, 248, 0.25);
+      border-radius: 22px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 24px 54px rgba(0, 0, 0, 0.55);
+    }
+    .offline-icon-wrap {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 18px;
+      border-radius: 20px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1.5px solid rgba(56, 189, 248, 0.35);
+      display: grid;
+      place-items: center;
+      color: #38bdf8;
+    }
+    .offline-brand {
+      font-size: 13px;
+      font-weight: 700;
+      color: #34d399;
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.45;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+    p {
+      margin: 0 0 24px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #94a3b8;
+    }
+    .retry-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 20px;
+      border: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #ffffff;
+      font: inherit;
+      font-size: 15.5px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(16, 185, 129, 0.35);
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    .retry-btn:active {
+      transform: scale(0.98);
+      opacity: 0.92;
+    }
+  </style>
+</head>
+<body>
+  <main class="offline-card" role="main">
+    <div class="offline-icon-wrap" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="1" y1="1" x2="23" y2="23"></line>
+        <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+        <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+        <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+        <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+        <line x1="12" y1="20" x2="12.01" y2="20"></line>
+      </svg>
+    </div>
+    <div class="offline-brand">আমার অধ্যয়ন কক্ষ</div>
+    <h1>ইন্টারনেট সংযোগ বিচ্ছিন্ন হয়েছে, পুনরায় চেষ্টা করুন</h1>
+    <p>লাইভ স্টাডি রুম, পরীক্ষা এবং লিডারবোর্ড আপডেট পেতে আপনার মোবাইল ডেটা বা ওয়াই-ফাই সংযোগ চালু করুন।</p>
+    <button type="button" class="retry-btn" id="retryBtn">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+      </svg>
+      <span>আবার চেষ্টা করুন</span>
+    </button>
+  </main>
+  <script>
+    (function () {
+      var btn = document.getElementById('retryBtn');
+      function retryNow() {
+        if (window.location.pathname.indexOf('offline.html') !== -1) {
+          window.location.href = '/';
+        } else {
+          window.location.reload();
+        }
+      }
+      if (btn) btn.addEventListener('click', retryNow);
+      window.addEventListener('online', function () {
+        setTimeout(retryNow, 300);
+      });
+    })();
+  </script>
+</body>
+</html>
