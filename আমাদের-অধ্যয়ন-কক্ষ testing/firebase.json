@@ -1,0 +1,61 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": [
+    {
+      "site": "my-study-room-0710",
+      "public": "public",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "!**/.well-known",
+        "!**/.well-known/**",
+        "**/node_modules/**"
+      ],
+      "headers": [
+        {
+          "source": "/.well-known/assetlinks.json",
+          "headers": [
+            { "key": "Content-Type", "value": "application/json; charset=utf-8" },
+            { "key": "Cache-Control", "value": "public, max-age=3600" }
+          ]
+        },
+        {
+          "source": "sw.js",
+          "headers": [
+            { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
+            { "key": "Service-Worker-Allowed", "value": "/" },
+            { "key": "Content-Type", "value": "application/javascript; charset=utf-8" }
+          ]
+        },
+        {
+          "source": "manifest.json",
+          "headers": [
+            { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
+            { "key": "Content-Type", "value": "application/manifest+json; charset=utf-8" }
+          ]
+        },
+        {
+          "source": "**/*.@(html|js|css)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache"
+            }
+          ]
+        }
+      ],
+      "rewrites": [
+        {
+          "source": "/admin",
+          "destination": "/admin.html"
+        },
+        {
+          "source": "/admin/",
+          "destination": "/admin.html"
+        }
+      ]
+    }
+  ]
+}
